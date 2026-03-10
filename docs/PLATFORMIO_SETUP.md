@@ -37,6 +37,27 @@ pio --version
 4. Click "Install"
 5. Restart VS Code
 
+### Option 3: Using with Visual Studio 2022
+
+If you're using Visual Studio 2022 (as you have CMake configured):
+
+**For Unit Testing:** Use VS2022 with CMake (already configured)
+```powershell
+# Build and test in VS2022
+Ctrl+Shift+B  # Build
+Ctrl+R, A     # Run all tests
+```
+
+**For ESP32 Development:** Use PlatformIO from VS2022 Terminal
+```powershell
+# Open Terminal in VS2022: Ctrl+`
+pip install platformio
+pio run
+pio run -t upload
+```
+
+See [VS2022_PLATFORMIO.md](VS2022_PLATFORMIO.md) for detailed VS2022 integration.
+
 ---
 
 ## Quick Start with PlatformIO

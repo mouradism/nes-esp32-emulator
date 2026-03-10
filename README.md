@@ -5,18 +5,32 @@ A Nintendo Entertainment System (NES) emulator implementation for ESP32 microcon
 [![Tests](https://img.shields.io/badge/tests-33%2F33%20passing-brightgreen)](TEST_RESULTS.md)
 [![Build](https://img.shields.io/badge/build-passing-brightgreen)](VERIFICATION_COMPLETE.md)
 [![Coverage](https://img.shields.io/badge/coverage-~60%25-yellow)](TEST_RESULTS.md)
+[![IDE](https://img.shields.io/badge/IDE-VS2022%20%2B%20PlatformIO-blue)](docs/VS2022_PLATFORMIO.md)
 
-## ?? Quick Start
+---
 
-**New to this project?** Check out [QUICKSTART.md](QUICKSTART.md) for easy setup instructions!
+## ?? For Visual Studio 2022 Users
 
-```bash
-# Quick build and test (Windows)
-.\scripts\build_and_test.ps1
+**You're all set!** This project is optimized for VS2022:
+- ? CMake configured for unit testing
+- ? Google Test integrated (33 tests passing)
+- ? PlatformIO ready for ESP32 development
 
-# Quick build and test (Linux/macOS)
-./scripts/build_and_test.sh
+**Quick Start:**
+```powershell
+# In VS2022: Build and test
+Ctrl+Shift+B  # Build
+Ctrl+R, A     # Run all tests
+
+# In VS2022 Terminal: Build for ESP32
+pip install platformio
+pio run
+pio run -t upload
 ```
+
+?? See [VS2022 Quick Reference](docs/VS2022_QUICK_REFERENCE.md) for keyboard shortcuts and workflow.
+
+---
 
 ## Overview
 This project aims to run NES games on ESP32 hardware, taking advantage of the dual-core processor and sufficient memory available on the ESP32.
