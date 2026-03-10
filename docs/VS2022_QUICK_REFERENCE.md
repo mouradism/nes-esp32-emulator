@@ -33,24 +33,38 @@ You have **TWO** build systems configured:
 ### In VS2022 Terminal (for PlatformIO)
 
 ```powershell
+# NOTE: Use 'python -m platformio' if 'pio' command is not found
+# See docs/PLATFORMIO_PATH_FIX.md for permanent solution
+
 # Build for ESP32
-pio run
+python -m platformio run
+# or: pio run (if PATH is configured)
 
 # Upload to ESP32
-pio run -t upload
+python -m platformio run -t upload
+# or: pio run -t upload
 
 # Monitor serial output
-pio device monitor
+python -m platformio device monitor
+# or: pio device monitor
 
 # Clean build
-pio run -t clean
+python -m platformio run -t clean
+# or: pio run -t clean
+
+# List connected devices
+python -m platformio device list
+# or: pio device list
 
 # All-in-one: upload and monitor
-pio run -t upload && pio device monitor
+python -m platformio run -t upload && python -m platformio device monitor
 
-# Use interactive manager
+# Use interactive manager (handles this automatically)
 .\scripts\pio_manager.ps1
 ```
+
+**PATH Issue?** If `pio` command is not found, use `python -m platformio` instead.  
+See [PLATFORMIO_PATH_FIX.md](PLATFORMIO_PATH_FIX.md) for permanent solutions.
 
 ---
 
@@ -264,15 +278,34 @@ Autocomplete:         Tab
 
 ### ? PlatformIO Not Found
 
-**Solution:**
-```powershell
-# Install PlatformIO
-pip install platformio
+**Problem:** `pio` command gives "not recognized" error
 
-# Verify
+**Quick Solution:** Use Python module instead
+```powershell
+# Use this instead of 'pio'
+python -m platformio run
+python -m platformio --version
+```
+
+**Permanent Solution:** Add to Windows PATH
+```powershell
+# 1. Add to PATH for current session
+$env:Path += ";C:\Users\taha\AppData\Roaming\Python\Python314\Scripts"
+
+# 2. Verify
 pio --version
 
-# If still not found, restart VS2022
+# 3. For permanent fix:
+#    - Open System Properties ? Environment Variables
+#    - Add to User PATH: C:\Users\taha\AppData\Roaming\Python\Python314\Scripts
+#    - Restart VS2022
+```
+
+See [PLATFORMIO_PATH_FIX.md](PLATFORMIO_PATH_FIX.md) for detailed solutions.
+
+**Alternative:** Use the manager script (handles this automatically)
+```powershell
+.\scripts\pio_manager.ps1
 ```
 
 ### ? ESP32 Not Detected
@@ -347,16 +380,37 @@ Now access via: Tools ? PlatformIO Build/Upload/Monitor
 # Install PlatformIO
 pip install platformio
 
-# Verify installation
-pio --version
+# Verify installation (use Python module method)
+python -m platformio --version
 
 # Build unit tests
 .\scripts\build_and_test.ps1
 
 # Build for ESP32
-pio run
+python -m platformio run
+# or: pio run (if you've added Python Scripts to PATH)
 
 # Done! ?
+```
+
+### Fix 'pio' Command Not Found
+
+If you get "pio is not recognized", you have two options:
+
+**Option 1: Use Python module (works immediately)**
+```powershell
+python -m platformio run
+```
+
+**Option 2: Add to PATH (permanent fix)**
+```powershell
+# Add Python Scripts to PATH for current session
+$env:Path += ";C:\Users\taha\AppData\Roaming\Python\Python314\Scripts"
+
+# Then verify
+pio --version
+
+# For permanent fix, see docs/PLATFORMIO_PATH_FIX.md
 ```
 
 ---

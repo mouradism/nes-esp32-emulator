@@ -32,12 +32,16 @@ function Write-Info-Custom {
 
 function Test-PlatformIO {
     try {
-        $null = pio --version 2>&1
-        return $true
+        # Try using python module method (works without PATH)
+        $result = python -m platformio --version 2>&1
+        if ($LASTEXITCODE -eq 0) {
+            return $true
+        }
     }
     catch {
         return $false
     }
+    return $false
 }
 
 function Install-PlatformIO {
@@ -47,6 +51,7 @@ function Install-PlatformIO {
     try {
         pip install platformio
         Write-Success "PlatformIO installed successfully!"
+        Write-Info-Custom "Note: Use 'python -m platformio' or restart terminal for 'pio' command"
         return $true
     }
     catch {
@@ -60,7 +65,7 @@ function Build-Project {
     Write-Header "Building Project"
     Write-Info-Custom "Building NES Emulator..."
     
-    pio run
+    python -m platformio run
     if ($LASTEXITCODE -eq 0) {
         Write-Success "Build completed successfully!"
         return $true
@@ -77,12 +82,13 @@ function Upload-Project {
     Write-Header "Uploading to ESP32"
     Write-Info-Custom "Uploading firmware..."
     
-    $cmd = "pio run -t upload"
     if ($UploadPort -ne "") {
-        $cmd += " --upload-port $UploadPort"
+        python -m platformio run -t upload --upload-port $UploadPort
+    }
+    else {
+        python -m platformio run -t upload
     }
     
-    Invoke-Expression $cmd
     if ($LASTEXITCODE -eq 0) {
         Write-Success "Upload completed successfully!"
         return $true
@@ -100,14 +106,14 @@ function Monitor-Serial {
     Write-Info-Custom "Opening serial monitor at $Baud baud..."
     Write-Info-Custom "Press Ctrl+C to exit"
     
-    pio device monitor -b $Baud
+    python -m platformio device monitor -b $Baud
 }
 
 function Clean-Project {
     Write-Header "Cleaning Project"
     Write-Info-Custom "Cleaning build files..."
     
-    pio run -t clean
+    python -m platformio run -t clean
     if ($LASTEXITCODE -eq 0) {
         Write-Success "Clean completed successfully!"
         return $true
@@ -120,14 +126,14 @@ function Clean-Project {
 
 function Show-Devices {
     Write-Header "Connected Devices"
-    pio device list
+    python -m platformio device list
 }
 
 function Update-Libraries {
     Write-Header "Updating Libraries"
     Write-Info-Custom "Updating project libraries..."
     
-    pio lib update
+    python -m platformio lib update
     if ($LASTEXITCODE -eq 0) {
         Write-Success "Libraries updated successfully!"
         return $true
