@@ -38,3 +38,22 @@ test/Testing/
 nes_tests
 nes_core.a
 libnes_core.a
+
+# Temporary/Generated Documentation (keep essential docs)
+CMAKE_AND_UNITTEST_SUMMARY.md
+GIT_COMMIT_SUCCESS.md
+SUCCESS.md
+VERIFICATION_COMPLETE.md
+TEST_RESULTS.md
+PLATFORMIO_COMPLETE.md
+PLATFORMIO_PATH_PERMANENT.md
+ESP32_BUILD_SUCCESS.md
+commit_message.txt
+
+# Keep these important docs:
+# README.md
+# QUICKSTART.md
+# CONTRIBUTING.md
+# CHECKLIST.md
+# PROJECT_STATUS.md
+# docs/*.md (all documentation in docs folder)
