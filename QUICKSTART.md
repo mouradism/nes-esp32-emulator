@@ -57,8 +57,20 @@ Or use the Command Palette (`Ctrl+Shift+P`):
 
 ## Option 4: For ESP32 Development (PlatformIO)
 
+### Install PlatformIO
+```bash
+# Install PlatformIO
+pip install platformio
+
+# Verify installation
+pio --version
+```
+
 ### Using PlatformIO CLI
 ```bash
+# Navigate to project
+cd "C:\Users\taha\Desktop\NES on ESP 32"
+
 # Build
 pio run
 
@@ -67,13 +79,41 @@ pio run -t upload
 
 # Monitor serial output
 pio device monitor
+
+# All-in-one: upload and monitor
+pio run -t upload && pio device monitor
 ```
 
+### Using PlatformIO Manager (Easier!)
+
+**Windows:**
+```powershell
+.\scripts\pio_manager.ps1
+```
+
+**Linux/macOS:**
+```bash
+python3 scripts/pio_manager.py
+```
+
+This provides an interactive menu for:
+- Building the project
+- Uploading to ESP32
+- Monitoring serial output
+- Managing libraries
+- Cleaning build files
+
 ### Using VSCode with PlatformIO Extension
-1. Click PlatformIO icon in sidebar
-2. Click "Build" under PROJECT TASKS
-3. Click "Upload" to flash to ESP32
-4. Click "Monitor" to view serial output
+1. Install "PlatformIO IDE" extension in VS Code
+2. Open project folder
+3. Click PlatformIO icon in sidebar
+4. Use the toolbar:
+   - ? Build
+   - ? Upload
+   - ?? Monitor
+
+See [docs/PLATFORMIO_SETUP.md](docs/PLATFORMIO_SETUP.md) for detailed setup.
+See [docs/PLATFORMIO_WORKFLOW.md](docs/PLATFORMIO_WORKFLOW.md) for development workflow.
 
 ## Running Specific Tests
 

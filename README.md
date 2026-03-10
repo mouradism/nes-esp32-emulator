@@ -30,11 +30,11 @@ This project aims to run NES games on ESP32 hardware, taking advantage of the du
 
 ## Software Requirements
 - ESP-IDF (Espressif IoT Development Framework) or Arduino IDE
-- Python 3.x (for ESP-IDF)
+- **PlatformIO** (recommended for ESP32 development)
+- Python 3.x (for ESP-IDF and PlatformIO)
 - USB drivers for ESP32
 - **CMake 3.16+** (for building and testing on host system)
 - **C++11 compatible compiler** (for unit tests)
-- **PlatformIO** (recommended for ESP32 development)
 
 ## Project Structure
 ```
@@ -52,11 +52,48 @@ This project aims to run NES games on ESP32 hardware, taking advantage of the du
 
 ## Getting Started
 
-### For ESP32 Development (PlatformIO)
-1. Install PlatformIO IDE or PlatformIO Core
-2. Open this project folder
-3. Connect your ESP32 board
-4. Build and upload: `pio run -t upload`
+### For ESP32 Development (PlatformIO) - Recommended
+
+#### 1. Install PlatformIO
+```bash
+# Using pip
+pip install platformio
+
+# Verify installation
+pio --version
+```
+
+Or install PlatformIO IDE extension in Visual Studio Code.
+
+#### 2. Build and Upload
+```bash
+# Navigate to project
+cd "path/to/NES on ESP 32"
+
+# Build project
+pio run
+
+# Upload to ESP32
+pio run -t upload
+
+# Monitor serial output
+pio device monitor
+```
+
+#### 3. Using the Manager Script
+```powershell
+# Windows
+.\scripts\pio_manager.ps1
+
+# This provides an interactive menu for:
+# - Building
+# - Uploading
+# - Monitoring
+# - Cleaning
+# - Managing libraries
+```
+
+See [docs/PLATFORMIO_SETUP.md](docs/PLATFORMIO_SETUP.md) for detailed PlatformIO setup.
 
 ### For Development and Testing (CMake)
 1. Install CMake 3.16 or higher
