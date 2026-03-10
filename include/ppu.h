@@ -16,6 +16,7 @@
 class PPU {
 public:
     PPU();
+    ~PPU();
     void reset();
     void clock();
     
@@ -23,8 +24,8 @@ public:
     static const int SCREEN_WIDTH = 256;
     static const int SCREEN_HEIGHT = 240;
     
-    // Frame buffer
-    uint16_t frameBuffer[SCREEN_WIDTH * SCREEN_HEIGHT];
+    // Frame buffer (allocated dynamically, in PSRAM on ESP32)
+    uint16_t* frameBuffer;
     
     // Frame complete flag
     bool frameComplete;

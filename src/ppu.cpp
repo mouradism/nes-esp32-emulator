@@ -1,8 +1,33 @@
 #include "ppu.h"
 #include <cstring>
 
+#ifdef ESP32
+#include <esp_heap_caps.h>
+#endif
+
 PPU::PPU() {
+    // Allocate frame buffer in PSRAM on ESP32
+    #ifdef ESP32
+    frameBuffer = (uint16_t*)heap_caps_malloc(SCREEN_WIDTH * SCREEN_HEIGHT * sizeof(uint16_t), MALLOC_CAP_SPIRAM);
+    if (frameBuffer == nullptr) {
+        // Fallback to regular RAM if PSRAM not available
+        frameBuffer = new uint16_t[SCREEN_WIDTH * SCREEN_HEIGHT];
+    }
+    #else
+    frameBuffer = new uint16_t[SCREEN_WIDTH * SCREEN_HEIGHT];
+    #endif
+    
     reset();
+}
+
+PPU::~PPU() {
+    #ifdef ESP32
+    if (frameBuffer) {
+        heap_caps_free(frameBuffer);
+    }
+    #else
+    delete[] frameBuffer;
+    #endif
 }
 
 void PPU::reset() {
@@ -18,7 +43,10 @@ void PPU::reset() {
     memset(nameTable, 0, sizeof(nameTable));
     memset(paletteTable, 0, sizeof(paletteTable));
     memset(oam, 0, sizeof(oam));
-    memset(frameBuffer, 0, sizeof(frameBuffer));
+    
+    if (frameBuffer) {
+        memset(frameBuffer, 0, SCREEN_WIDTH * SCREEN_HEIGHT * sizeof(uint16_t));
+    }
 }
 
 void PPU::clock() {
