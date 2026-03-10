@@ -161,7 +161,9 @@ To be determined
 
 ## ?? Project Resources
 
+- ??? [Project Roadmap](ROADMAP.md) - Phases, milestones, and dependency graph
 - ?? [Project Status Dashboard](PROJECT_STATUS.md) - Current progress and metrics
+- ?? [Implementation Checklist](CHECKLIST.md) - Detailed task tracking
 - ?? [Success Summary](SUCCESS.md) - What's been accomplished
 - ?? [Quick Start Guide](QUICKSTART.md) - Easy setup instructions
 - ?? [Contributing Guide](CONTRIBUTING.md) - How to contribute
