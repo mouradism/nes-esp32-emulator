@@ -1,4 +1,5 @@
 # NES Emulator on ESP32
+<img width="1270" height="684" alt="image" src="https://github.com/user-attachments/assets/1453b7a8-eec6-43ac-ab1e-5311f3a65a54" />
 
 A Nintendo Entertainment System (NES) emulator implementation for ESP32 microcontroller.
 
