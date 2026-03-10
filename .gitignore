@@ -1,0 +1,40 @@
+.pio
+.vscode
+.DS_Store
+*.bin
+*.elf
+*.map
+data/*.nes
+
+# CMake build files
+build/
+cmake-build-*/
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+*.cmake
+!CMakeLists.txt
+
+# Test output
+Testing/
+test/Testing/
+*.gcov
+*.gcda
+*.gcno
+
+# IDE files
+.vs/
+.idea/
+*.suo
+*.user
+*.sln.docstates
+*.vcxproj*
+
+# Compiled binaries
+*.exe
+*.out
+*.app
+nes_tests
+nes_core.a
+libnes_core.a
