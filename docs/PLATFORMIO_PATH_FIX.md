@@ -1,41 +1,39 @@
 # PlatformIO PATH Fix for Windows
 
+## ? PERMANENT FIX APPLIED!
+
+If you're reading this after running the permanent fix script, the PATH has been updated. 
+**You must restart Visual Studio 2022 and all terminals for changes to take effect.**
+
+---
+
 ## Issue
 PlatformIO is installed but `pio` command is not recognized in PowerShell.
 
-## Quick Fix: Use Python Module
+## ? Quick Permanent Fix (Recommended)
 
-Instead of `pio`, use `python -m platformio`:
-
+**Run this script once:**
 ```powershell
-# Instead of:
-pio --version
-
-# Use:
-python -m platformio --version
+.\scripts\fix_pio_path_permanent.ps1
 ```
 
-## Permanent Solution 1: Add to PATH (Recommended)
+This will:
+- ? Add PlatformIO to your Windows User PATH permanently
+- ? Work for all future terminal sessions
+- ? No need to run fix scripts anymore
 
-### Find PlatformIO Location
-```powershell
-# Find where pio.exe is located
-python -c "import platformio; import os; print(os.path.dirname(platformio.__file__))"
-```
+**After running, you must:**
+1. Close Visual Studio 2022
+2. Close all PowerShell/Terminal windows  
+3. Reopen Visual Studio 2022
 
-The `pio.exe` should be in your Python Scripts folder, typically:
-```
-C:\Users\taha\AppData\Roaming\Python\Python314\Scripts\
-```
+Then `pio` will work everywhere!
 
-### Add to PATH (Current Session)
-```powershell
-# Add to PATH for current PowerShell session
-$env:Path += ";C:\Users\taha\AppData\Roaming\Python\Python314\Scripts"
+---
 
-# Verify
-pio --version
-```
+## Alternative: Manual Permanent Fix
+
+If you prefer to do it manually:
 
 ### Add to PATH (Permanent)
 1. Press `Win + X` and select "System"
@@ -48,84 +46,92 @@ pio --version
 8. Click OK on all dialogs
 9. **Restart PowerShell/VS2022**
 
-## Permanent Solution 2: Create Alias
+---
 
-Add this to your PowerShell profile:
+## Temporary Fix (Current Session Only)
 
+If you need a quick fix for current session only:
 ```powershell
-# Open/create PowerShell profile
-notepad $PROFILE
-
-# Add this line:
-Set-Alias -Name pio -Value "python -m platformio"
-
-# Save and reload:
-. $PROFILE
+.\scripts\fix_pio_path.ps1
 ```
 
-## Permanent Solution 3: Use Batch File Wrapper
-
-Create `pio.bat` in a PATH directory:
-
-```batch
-@echo off
-python -m platformio %*
-```
-
-Save to: `C:\Windows\System32\pio.bat` (requires admin) or add to any directory in your PATH.
-
-## Quick Workaround for This Project
-
-I'll update the scripts to use `python -m platformio` instead of `pio`.
-
-### Updated Commands
-
+Or manually:
 ```powershell
-# Build
-python -m platformio run
-
-# Upload
-python -m platformio run -t upload
-
-# Monitor
-python -m platformio device monitor
-
-# List devices
-python -m platformio device list
-
-# Clean
-python -m platformio run -t clean
-```
-
-## Test the Fix
-
-```powershell
-# Test with Python module
-python -m platformio --version
-
-# Should show: PlatformIO Core, version 6.1.19
-```
-
-## For VS2022 Users
-
-### Temporary Fix (Current Session)
-```powershell
-# In VS2022 Terminal (Ctrl+`)
 $env:Path += ";C:\Users\taha\AppData\Roaming\Python\Python314\Scripts"
 pio --version
 ```
 
-### Permanent Fix
-After adding to Windows PATH and restarting VS2022, `pio` will work.
+---
 
-## Verification
+## Alternative: Use Python Module (No Fix Needed)
 
-After applying any fix:
+Instead of `pio`, use `python -m platformio`:
+
 ```powershell
-pio --version
-# Should output: PlatformIO Core, version 6.1.19
+# Works without any PATH changes
+python -m platformio --version
+python -m platformio run
+python -m platformio run -t upload
+python -m platformio device monitor
+python -m platformio device list
+python -m platformio run -t clean
 ```
 
 ---
 
-**Recommended:** Use Solution 1 (Add to PATH) - it's the cleanest and most reliable.
+## Verification
+
+After permanent fix and restart:
+```powershell
+# Open new terminal
+pio --version
+# Should output: PlatformIO Core, version 6.1.19
+```
+
+If it still doesn't work, try:
+```powershell
+# Check if path was added
+$env:Path -split ";" | Select-String "Python.*Scripts"
+
+# Should show: C:\Users\taha\AppData\Roaming\Python\Python314\Scripts
+```
+
+---
+
+## Troubleshooting
+
+### Still not working after restart?
+
+1. **Verify PATH was updated:**
+```powershell
+[Environment]::GetEnvironmentVariable("Path", "User") -split ";" | Select-String "Python.*Scripts"
+```
+
+2. **Make sure you closed ALL terminals:**
+   - Close VS2022 completely
+   - Close all PowerShell windows
+   - Close Windows Terminal if open
+   - Reopen fresh
+
+3. **Check Python location:**
+```powershell
+python -c "import sys; import os; print(os.path.join(sys.prefix, 'Scripts'))"
+```
+
+If location is different, update PATH with correct location.
+
+---
+
+## Summary of Solutions
+
+| Solution | Type | When to Use |
+|----------|------|-------------|
+| `fix_pio_path_permanent.ps1` | Permanent | **Best choice** - Do once |
+| `fix_pio_path.ps1` | Temporary | Quick test, current session |
+| `python -m platformio` | Always works | No setup needed |
+| `.\scripts\pio_manager.ps1` | Wrapper | Uses Python module internally |
+| Manual PATH edit | Permanent | If scripts don't work |
+
+---
+
+**Recommended:** Run `fix_pio_path_permanent.ps1` once, restart VS2022, and never worry about it again!
