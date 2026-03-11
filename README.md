@@ -13,9 +13,9 @@ A Nintendo Entertainment System (NES) emulator implementation for ESP32 microcon
 ## ?? For Visual Studio 2022 Users
 
 **You're all set!** This project is optimized for VS2022:
-- ? CMake configured for unit testing
-- ? Google Test integrated (33 tests passing)
-- ? PlatformIO ready for ESP32 development
+-  CMake configured for unit testing
+-  Google Test integrated (33 tests passing)
+-  PlatformIO ready for ESP32 development
 
 **Quick Start:**
 ```powershell
@@ -29,7 +29,7 @@ pio run
 pio run -t upload
 ```
 
-?? See [VS2022 Quick Reference](docs/VS2022_QUICK_REFERENCE.md) for keyboard shortcuts and workflow.
+ See [VS2022 Quick Reference](docs/VS2022_QUICK_REFERENCE.md) for keyboard shortcuts and workflow.
 
 ---
 
@@ -54,15 +54,15 @@ This project aims to run NES games on ESP32 hardware, taking advantage of the du
 ## Project Structure
 ```
 /
-??? src/              # Source files
-??? include/          # Header files
-??? lib/              # Libraries
-??? data/             # ROM files and assets
-??? test/             # Unit tests (Google Test)
-??? docs/             # Documentation
-??? platformio.ini    # PlatformIO configuration (if using PlatformIO)
-??? CMakeLists.txt    # CMake configuration (for testing)
-??? README.md         # This file
+ src/              # Source files
+ include/          # Header files
+ lib/              # Libraries
+ data/             # ROM files and assets
+ test/             # Unit tests (Google Test)
+ docs/             # Documentation
+ platformio.ini    # PlatformIO configuration (if using PlatformIO)
+ CMakeLists.txt    # CMake configuration (for testing)
+ README.md         # This file
 ```
 
 ## Getting Started
@@ -161,12 +161,12 @@ To be determined
 
 ## ?? Project Resources
 
-- ?? [Project Status Dashboard](PROJECT_STATUS.md) - Current progress and metrics
-- ?? [Success Summary](SUCCESS.md) - What's been accomplished
-- ?? [Quick Start Guide](QUICKSTART.md) - Easy setup instructions
-- ?? [Contributing Guide](CONTRIBUTING.md) - How to contribute
-- ?? [Build Documentation](docs/BUILD.md) - Detailed build instructions
-- ?? [Testing Guide](docs/TESTING.md) - Testing documentation
+-  [Project Status Dashboard](PROJECT_STATUS.md) - Current progress and metrics
+-  [Success Summary](SUCCESS.md) - What's been accomplished
+-  [Quick Start Guide](QUICKSTART.md) - Easy setup instructions
+-  [Contributing Guide](CONTRIBUTING.md) - How to contribute
+-  [Build Documentation](docs/BUILD.md) - Detailed build instructions
+-  [Testing Guide](docs/TESTING.md) - Testing documentation
 
 ---
 
