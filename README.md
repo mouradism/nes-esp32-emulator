@@ -10,7 +10,7 @@ A Nintendo Entertainment System (NES) emulator implementation for ESP32 microcon
 
 ---
 
-## ?? For Visual Studio 2022 Users
+##  For Visual Studio 2022 Users
 
 **You're all set!** This project is optimized for VS2022:
 -  CMake configured for unit testing
@@ -159,7 +159,7 @@ To be determined
 
 ---
 
-## ?? Project Resources
+##  Project Resources
 
 -  [Project Status Dashboard](PROJECT_STATUS.md) - Current progress and metrics
 -  [Success Summary](SUCCESS.md) - What's been accomplished
