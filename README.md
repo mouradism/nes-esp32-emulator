@@ -170,6 +170,6 @@ To be determined
 
 ---
 
-**Status:** ? Project Initialized with Testing Infrastructure | ?? 37+ Tests Passing | ?? ~60% Coverage
+**Status:**  Project Initialized with Testing Infrastructure |  37+ Tests Passing |  ~60% Coverage
 <img width="1120" height="728" alt="image" src="https://github.com/user-attachments/assets/371a9196-044c-4f7d-8b76-684e21c5cbc8" />
 
